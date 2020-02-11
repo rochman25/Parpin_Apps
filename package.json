@@ -28,7 +28,7 @@
     "@adonisjs/shield": "^1.0.8"
   },
   "devDependencies": {
-    "knex": ">=0.19.5"
+    "knex": "^0.20.9"
   },
   "autoload": {
     "App": "./app"
