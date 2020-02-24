@@ -1,0 +1,90 @@
+@layout('base')
+@yield('content')
+<div class="page-wrapper">
+  @include('master.breadcumb')
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-12">
+        <div class="card">
+          <div class="card-body">
+            <h4 class="card-title"></h4>
+            <h6 class="card-subtitle">
+              <a href="tambah_alat" class="btn btn-primary"><i class="fa fa-plus"></i> Tambah Alat</a>
+              {{--  Add <code>.table-hover</code> to enable a hover state on table  --}}
+              {{--  rows within a <code>&lt;tbody&gt;</code>.  --}}
+            </h6>
+          </div>
+          <div class="table-responsive">
+            <table class="table table-hover">
+              <thead>
+                <tr>
+                  <th scope="col">No</th>
+                  <th scope="col">Nama </th>
+                  <th scope="col">Spesifikasi</th>
+                  <th scope="col">Lokasi</th>
+                  <th scope="col">Foto</th>
+                  <th scope="col">Aksi</th>
+                </tr>
+              </thead>
+              <tbody>
+                @each(thing in things)
+                <tr>
+                  <th scope="row">{{ ($loop.index + 1) }}</th>
+                  <td>{{ thing.name }}</td>
+                  <td>{{ thing.spesification }}</td>
+                  <td></td>
+                  <td></td>
+                  <td>
+                    <a href="alat/{{ thing._id }}" class="btn btn-success">Ubah</a>
+                    <button id="btnHapus" data-target="#hapusModal" data-toggle="modal" data-id="{{ thing._id }}"
+                      class="btn btn-danger">Hapus</a>
+                  </td>
+                </tr>
+                @else
+                <tr>
+                  <td colspan="6">
+                    <p style="text-align: center">Tidak Ada Data Alat!</p>
+                  </td>
+                </tr>
+                @endeach
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Danger Header Modal -->
+<div id="hapusModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="danger-header-modalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header modal-colored-header modal-header-centered bg-danger">
+        <h4 class="modal-title" id="danger-header-modalLabel">Hapus Data</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+      </div>
+      <div class="modal-body">
+        <!-- <h5 class="mt-0">Logout</h5> -->
+        <p>Apakah anda yakin ingin menghapus data ini?</p>
+      </div>
+      <div class="modal-footer">
+        <form action="hapus_alat" method="post">
+          {{ csrfField() }}
+          <input type="hidden" class="form-control" name="id" id="id_alat">
+          <button type="button" class="btn btn-light" data-dismiss="modal">Batal</button>
+          <button type="submit" class="btn btn-danger">Ya</button>
+        </form>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<script src="{{ assetsUrl('assets/libs/jquery/dist/jquery.min.js') }}"></script>
+<script type="text/javascript">
+  $(document).on("click","#btnHapus", function(){
+    let id = $(this).data('id')
+    $("#id_alat").val(id)
+  })
+</script>
+@endyield
+

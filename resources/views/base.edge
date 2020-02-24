@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>{{ title }}</title>
+    <!-- Custom CSS -->
+    <link
+      href=" {{ assetsUrl('assets/extra-libs/c3/c3.min.css') }}" rel="stylesheet"
+    />
+    <link
+      href="{{ assetsUrl('assets/libs/chartist/dist/chartist.min.css') }}" rel="stylesheet"
+    />
+    <link
+      href="{{ assetsUrl('assets/extra-libs/jvector/jquery-jvectormap-2.0.2.css') }}"rel="stylesheet"
+    />
+    <!-- Custom CSS -->
+    <link href="{{ assetsUrl('dist/css/style.min.css') }}" rel="stylesheet" />
+  </head>
+  <body>
+    <!-- ============================================================== -->
+    <!-- Main wrapper - style you can find in pages.scss -->
+    <!-- ============================================================== -->
+    <div
+      id="main-wrapper"
+      data-theme="light"
+      data-layout="vertical"
+      data-navbarbg="skin6"
+      data-sidebartype="full"
+      data-sidebar-position="fixed"
+      data-header-position="fixed"
+      data-boxed-layout="full"
+    >
+      @include('master.header')
+      @include('master.sidebar')
+      @!section('content')
+      <!-- Danger Header Modal -->
+      <div id="danger-header-modal" class="modal fade" tabindex="-1" role="dialog"
+      aria-labelledby="danger-header-modalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+              <div class="modal-header modal-colored-header modal-header-centered bg-danger">
+                  <h4 class="modal-title" id="danger-header-modalLabel">Konfirmasi Logout</h4>
+                  <button type="button" class="close" data-dismiss="modal"
+                      aria-hidden="true">×</button>
+              </div>
+              <div class="modal-body">
+                  <!-- <h5 class="mt-0">Logout</h5> -->
+                  <p>Apakah anda yakin ingin logout?</p>
+              </div>
+              <div class="modal-footer">
+                <form action="/logout" method="post">
+                  {{ csrfField() }}
+                  <button type="button" class="btn btn-light"
+                      data-dismiss="modal">Batal</button>
+                  <button type="submit" class="btn btn-danger">Ya</button>
+                </form>
+              </div>
+          </div><!-- /.modal-content -->
+      </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+      @include('master.footer')
+    </div>
+    @include('assets.javascript')
+    <!--This page JavaScript -->
+    <script src="{{ assetsUrl('assets/extra-libs/c3/d3.min.js') }}"></script>
+    <script src="{{ assetsUrl('assets/extra-libs/c3/c3.min.js') }}"></script>
+    <script src="{{ assetsUrl('assets/libs/chartist/dist/chartist.min.js')}}"></script>
+    <script src="{{ assetsUrl('assets/libs/chartist-plugin-tooltips/dist/chartist-plugin-tooltip.min.js') }}"></script>
+    <script src="{{ assetsUrl('assets/extra-libs/jvector/jquery-jvectormap-2.0.2.min.js') }}"></script>
+    <script src="{{ assetsUrl('assets/extra-libs/jvector/jquery-jvectormap-world-mill-en.js') }}"></script>
+    <script src="{{ assetsUrl('dist/js/pages/dashboards/dashboard1.js') }}"></script>
+  </body>
+</html>
