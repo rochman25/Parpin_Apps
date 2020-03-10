@@ -30,7 +30,9 @@
     "set-value": "^3.0.1"
   },
   "devDependencies": {
-    "knex": "^0.20.9"
+    "knex": "^0.20.9",
+    "vue": "^2.6.11",
+    "vue-router": "^3.1.6"
   },
   "autoload": {
     "App": "./app"
