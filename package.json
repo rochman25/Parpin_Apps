@@ -28,7 +28,7 @@
     "@adonisjs/shield": "^1.0.8",
     "laravel-mix": "^5.0.1",
     "lucid-mongo": "^3.1.6",
-    "set-value": "^3.0.1"
+    "set-value": "^4.0.1"
   },
   "devDependencies": {
     "knex": "^0.20.9",
